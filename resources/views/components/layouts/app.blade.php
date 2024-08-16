@@ -12,6 +12,7 @@
 {{-- </html> --}}
 
 @extends('adminlte::page')
+@section('title',$title ?? "Dashboard")
 @section('content')
 {{ $slot }}
 @endsection

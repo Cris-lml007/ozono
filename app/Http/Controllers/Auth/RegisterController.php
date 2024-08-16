@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Person;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -49,7 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'ci' => ['required', 'unique:persons,ci'],
+            'surname' => ['required', 'string', 'max:30'],
             'name' => ['required', 'string', 'max:255'],
+            'birthdate' => ['required', 'date'],
+            'gender' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -63,8 +69,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $person = Person::where('ci',$data['ci'])->first();
+        if(!$person){
+            $person = Person::create([
+                'ci' => $data['ci'],
+                'surname' => $data['name'],
+                'name' => $data['name'],
+                'birthdate' => $data['birthdate'],
+                'gender' => $data['gender']
+            ]);
+        }
         return User::create([
-            'name' => $data['name'],
+            'person_id' => $person->id,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
