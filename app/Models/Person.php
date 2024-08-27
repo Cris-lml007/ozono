@@ -17,4 +17,20 @@ class Person extends Model
         'birthdate',
         'gender'
     ];
+
+    public function user(){
+        return $this->hasOne(User::class,'person_id','id');
+    }
+
+    public function getActiveAttribute()
+    {
+        $user = $this->hasOne(User::class, 'person_id', 'id')->first();
+        return $user ? $user->active : null;
+    }
+
+    public function getRoleAttribute(){
+        $user = $this->hasOne(User::class, 'person_id', 'id')->first();
+        return $user ? $user->role->display() : null;
+    }
+
 }

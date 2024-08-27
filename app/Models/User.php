@@ -22,6 +22,7 @@ class User extends Authenticatable
         'person_id',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -50,5 +51,9 @@ class User extends Authenticatable
 
     public function person(){
         return $this->hasOne(Person::class,'id','person_id');
+    }
+
+    public function schedules(){
+        return $this->belongsToMany(Schedule::class,'staff_schedules','user_id','schedule_id');
     }
 }

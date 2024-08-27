@@ -60,5 +60,8 @@ class DatabaseSeeder extends Seeder
             'treatment_id' => $tt->id,
             'observation_id' => $o->id
         ]);
+
+        Person::factory(10)->has(User::factory())->create();
+        // User::factory(10)->has(Person::factory(10))->create();
     }
 }
