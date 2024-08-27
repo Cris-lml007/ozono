@@ -340,7 +340,7 @@ return [
         ],
         [
             'text' => 'Tratamientos',
-            'route' => 'treatments',
+            'route' => 'dashboard.treatments',
             'icon' => 'fa fa-paperclip'
         ],
         [
@@ -350,19 +350,7 @@ return [
                 [
                     'text' => 'Personal',
                     'icon' => 'fa fa-hospital',
-                    'url' => '#',
-                    'submenu' =>[
-                        [
-                            'text' => 'Enfermeras',
-                            'url' => '#',
-                            'icon' => 'fa fa-user-nurse'
-                        ],
-                        [
-                            'text' => 'Medicos',
-                            'url' => '#',
-                            'icon' => 'fa fa-stethoscope'
-                        ]
-                    ]
+                    'route' => 'dashboard.staff',
                 ],
                 [
                     'text' => 'Reportes',
@@ -371,7 +359,7 @@ return [
                 ],
                 [
                     'text' => 'Configuraciones',
-                    'url' => '#',
+                    'route' => 'dashboard.settings',
                     'icon' => 'fa fa-wrench'
                 ],
             ],
