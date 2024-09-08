@@ -30,5 +30,6 @@ Route::middleware('auth')->prefix('/dashboard')->group(function(){
         Route::get('treatment','treatment')->name('dashboard.treatments');
         Route::get('staff','staff')->name('dashboard.staff');
         Route::get('settings','settings')->name('dashboard.settings');
+        Route::get('consultation','consultation')->name('dashboard.consultation');
     });
 });

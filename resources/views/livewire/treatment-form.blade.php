@@ -67,7 +67,7 @@
             </tbody>
         </table>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer px-0">
         <a wire:click="restart" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
         @if (!$idT)
             <a id="btnDelete" wire:click="updateOrCreate" class="btn btn-success">Nuevo Tratamiento</a>

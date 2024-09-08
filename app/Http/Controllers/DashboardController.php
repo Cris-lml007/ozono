@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Constraint\Count;
 
 class DashboardController extends Controller
 {
@@ -20,5 +21,8 @@ class DashboardController extends Controller
 
     public function settings(){
         return view('settings');
+    }
+
+    public function consultation(){
     }
 }

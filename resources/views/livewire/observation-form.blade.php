@@ -23,7 +23,7 @@
             @enderror
         </div>
     </div>
-    <div class="modal-footer">
+    <div class="modal-footer px-0">
         <a wire:click="restart" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
         <a wire:click="updateOrCreate" class="btn btn-success" data-bs-dismiss="modal">Añadir</a>
     </div>
