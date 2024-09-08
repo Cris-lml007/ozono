@@ -315,7 +315,7 @@ return [
         ],
         [
             'text' => 'Principal',
-            'url' => '#',
+            'route' => 'dashboard.main',
             'icon' => 'fa fa-home',
         ],
         [
