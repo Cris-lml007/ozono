@@ -6,37 +6,77 @@
 <div>
     <h5>Paciente</h5>
     <div class="d-flex">
-        <div style="width: 80%;">
+        <div style="width: 100%;">
             <div class="input-group">
                 <span class="input-group-text">CI</span>
                 <input wire:model="ci" wire:keydown.enter="getPerson" class="form-control" type="number">
                 <a wire:click="getPerson" class="btn btn-primary"><i class="fa fa-search"></i></a>
+                @error('ci')
+                    <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
+                        data-bs-title="{{ $message }}">
+                        <i class="fa fa-exclamation"></i>
+                    </span>
+                @enderror
                 <div class="input-group">
                     <span class="input-group-text">Apellidos</span>
-                    <input wire:model="surname" class="form-control" type="text" @if ($this->person!=null) readonly @endif>
+                    <input wire:model="surname" class="form-control" type="text"
+                        @if ($this->person != null) readonly @endif>
+                    @error('surname')
+                        <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
+                            data-bs-title="{{ $message }}">
+                            <i class="fa fa-exclamation"></i>
+                        </span>
+                    @enderror
                 </div>
                 <div class="input-group">
                     <span class="input-group-text">Nombres</span>
-                    <input wire:model="name" class="form-control" type="text" @if ($this->person!=null) readonly @endif>
+                    <input wire:model="name" class="form-control" type="text"
+                        @if ($this->person != null) readonly @endif>
+                    @error('name')
+                        <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
+                            data-bs-title="{{ $message }}">
+                            <i class="fa fa-exclamation"></i>
+                        </span>
+                    @enderror
                 </div>
             </div>
             <div class="input-group">
                 <span class="input-group-text">Fecha de Nacimiento</span>
-                <input wire:model="birthdate" class="form-control" type="date" @if ($this->person!=null) readonly @endif>
+                <input wire:model="birthdate" class="form-control" type="date"
+                    @if ($this->person != null) readonly @endif>
+                @error('birthdate')
+                    <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
+                        data-bs-title="{{ $message }}">
+                        <i class="fa fa-exclamation"></i>
+                    </span>
+                @enderror
             </div>
             <div class="input-group">
                 <span class="input-group-text">Genero</span>
-                <select wire:model="gender" class="form-select" @if ($this->person!=null) readonly disabled @endif>
+                <select wire:model="gender" class="form-select"
+                    @if ($this->person != null) readonly disabled @endif>
                     <option selected>Seleccione</option>
                     <option value="1">Hombre</option>
                     <option value="0">Mujer</option>
                 </select>
+                @error('gender')
+                    <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
+                        data-bs-title="{{ $message }}">
+                        <i class="fa fa-exclamation"></i>
+                    </span>
+                @enderror
             </div>
-        </div>
-        <div style="width: 20%;margin: 1px;">
-            <div class="img-thumbnail" style="width: auto;height: 100%;">
-                <video id="video" autoplay="true" style="width: 100%;">
-                </video>
+            <div class="input-group">
+                <span class="input-group-text">Patologias</span>
+                <textarea wire:model="pathological" rows="1" class="form-control" @if ($this->person != null) readonly @endif></textarea>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text">Alergias</span>
+                <textarea wire:model="allergies" rows="1" class="form-control" @if ($this->person != null) readonly @endif></textarea>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text">Cirugias</span>
+                <textarea wire:model="surgeries" rows="1" class="form-control" @if ($this->person != null) readonly @endif></textarea>
             </div>
         </div>
     </div>
@@ -62,7 +102,7 @@
         <select wire:model="medic" class="form-select">
             <option value=null>Seleccione</option>
             @foreach ($this->getMedics() as $schedule)
-            <option value="{{ $schedule->staff_schedule_id}}">
+                <option value="{{ $schedule->staff_schedule_id }}">
                     {{ $schedule->staff->person->surname . ' ' . $schedule->staff->person->name }}</option>
             @endforeach
         </select>
@@ -72,21 +112,6 @@
             </span>
         @enderror
     </div>
-    {{-- <h5>Tratamiento</h5> --}}
-    {{-- <div class="input-group"> --}}
-    {{--     <span class="input-group-text">Tratamiento</span> --}}
-    {{--     <select wire:model.lazy="treatment" class="form-select"> --}}
-    {{--         <option value="null">Seleccione</option> --}}
-    {{--         @foreach (Treatment::all() as $treatment) --}}
-    {{--             <option value="{{ $treatment->id }}">{{ $treatment->name }}</option> --}}
-    {{--         @endforeach --}}
-    {{--     </select> --}}
-    {{-- </div> --}}
-    {{-- <div class="input-group"> --}}
-    {{--     <span class="input-group-text">Precio</span> --}}
-    {{--     <input value="{{ $this->getPrice() ?? '0' }}" type="number" class="form-control" readonly> --}}
-    {{--     <span class="input-group-text">Bs</span> --}}
-    {{-- </div> --}}
     <div class="modal-footer px-0">
         <a wire:click="restart" data-bs-dismiss="modal" class="btn btn-danger">Cancelar</a>
         <a wire:click="createAttention" class="btn btn-success">Registrar Atención</a>

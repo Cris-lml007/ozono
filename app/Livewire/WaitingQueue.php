@@ -13,8 +13,8 @@ class WaitingQueue extends Component
         return Reservation::where('date',Carbon::now()->toDateString())->get();
     }
 
-    public function runConsultation(){
-        return redirect(route('dashboard.consultation'));
+    public function runConsultation($id){
+        return redirect(route('dashboard.consultation',$id));
     }
 
     public function render()

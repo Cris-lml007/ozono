@@ -17,6 +17,10 @@ class Schedule extends Model
         'end'
     ];
 
+    public function staffSchedule(){
+        return $this->hasMany(Staff_schedule::class);
+    }
+
     public function casts(): array
     {
         return [

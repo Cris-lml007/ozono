@@ -23,11 +23,20 @@ class CreateAttention extends Component
     public $hour;
     public $medic;
 
+    #[Validate('required|integer')]
     public $ci;
+    #[Validate('required|string')]
     public $surname;
+    #[Validate('required|string')]
     public $name;
+    #[Validate('required|date')]
     public $birthdate;
+    #[Validate('required|integer')]
     public $gender;
+
+    public $allergies;
+    public $surgeries;
+    public $pathological;
 
 
     public $person;
@@ -55,6 +64,9 @@ class CreateAttention extends Component
             $this->name = $this->person->name;
             $this->birthdate = $this->person->birthdate;
             $this->gender = $this->person->gender;
+            $this->allergies = $this->person->allergies;
+            $this->surgeries = $this->person->surgeries;
+            $this->pathological = $this->person->pathological;
         } else {
             $this->person = null;
             $this->reset(['surname', 'name', 'birthdate', 'gender']);
@@ -70,7 +82,10 @@ class CreateAttention extends Component
                 'surname' => $this->surname,
                 'name' => $this->name,
                 'birthdate' => $this->birthdate,
-                'gender' => $this->gender
+                'gender' => $this->gender,
+                'allergies' => $this->allergies,
+                'pathological' => $this->pathological,
+                'surgeries' => $this->surgeries
             ]);
         }
         Reservation::create([
@@ -78,6 +93,7 @@ class CreateAttention extends Component
             'staff_schedule_id' => $this->medic,
             'date' => $this->date
         ]);
+        return redirect(route('dashboard.main'));
     }
 
     public function getMedics()

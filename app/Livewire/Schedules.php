@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Schedule;
+use App\Models\Setting;
+use App\Models\Treatment;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -14,6 +16,9 @@ class Schedules extends Component
     public $start;
     #[Validate('required|date_format:H:i|after:start')]
     public $end;
+
+    public $treatment;
+    public $first_free;
 
     public function toggleDays($day)
     {
@@ -28,6 +33,8 @@ class Schedules extends Component
     public function boot()
     {
         $this->schedules = Schedule::all();
+        $this->treatment = Setting::first()->treatment_id;
+        $this->first_free = Setting::first()->first_free;
     }
 
     public function getDays($day)
@@ -53,6 +60,22 @@ class Schedules extends Component
 
     public function delete($id){
         Schedule::destroy($id);
+    }
+
+    public function getTreatments(){
+        return Treatment::all();
+    }
+
+    public function updatedTreatment(){
+        if($this->treatment != null){
+            Setting::first()->update(['treatment_id' => $this->treatment]);
+        }else{
+            Setting::first()->update(['treatment_id' => null]);
+        }
+    }
+
+    public function updatedFirstFree(){
+        Setting::first()->update(['first_free' => $this->first_free]);
     }
 
     public function restart(){

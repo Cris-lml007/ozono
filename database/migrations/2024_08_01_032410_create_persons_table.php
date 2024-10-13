@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('surname')->nullable(false);
             $table->string('name')->nullable(false);
             $table->date('birthdate')->nullable(false);
+            $table->string('allergies')->nullable(true);
+            $table->string('surgeries')->nullable(true);
+            $table->string('pathological')->nullable(true);
             $table->integer('gender');
             $table->timestamps();
         });

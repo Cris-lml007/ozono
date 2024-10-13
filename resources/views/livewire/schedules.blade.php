@@ -58,8 +58,8 @@
                                     @php
                                         $duration = substr($schedule->end, 0, 2) - substr($schedule->start, 0, 2);
                                     @endphp
-                                    <td wire:click="delete({{$schedule->id}})" colspan="{{ $duration }}" class="bg-success rounded table-cell"
-                                        style="margin: 0;padding: 0;">
+                                    <td wire:click="delete({{ $schedule->id }})" colspan="{{ $duration }}"
+                                        class="bg-success rounded table-cell" style="margin: 0;padding: 0;">
                                         <i class="fa fa-trash delete-icon"></i>
                                     </td>
                                     @php
@@ -76,6 +76,20 @@
             </tbody>
         </table>
     </div>
+    {{-- <h5 class="card-text">Tratamiento por Defecto</h5> --}}
+    {{-- <div class="input-group"> --}}
+    {{--     <span class="input-group-text">Tratamiento por Defecto</span> --}}
+    {{--     <select wire:model.live="treatment" class="form-select"> --}}
+    {{--         <option value="null">Ninguno</option> --}}
+    {{--         @foreach ($this->getTreatments() as $treatment) --}}
+    {{--             <option value="{{ $treatment->id }}">{{ $treatment->name }}</option> --}}
+    {{--         @endforeach --}}
+    {{--     </select> --}}
+    {{-- </div> --}}
+    {{-- <div class="form-check"> --}}
+    {{--     <input wire:model.live="first_free" class="form-check-input" type="checkbox"> --}}
+    {{--     <span class="form-check-label">Primera Consulta Gratis</span> --}}
+    {{-- </div> --}}
 </div>
 
 @section('css')

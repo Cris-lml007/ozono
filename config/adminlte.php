@@ -320,23 +320,13 @@ return [
         ],
         [
             'text' => 'Citas Medicas',
-            'url' => '#',
+            'route' => 'dashboard.appointment',
             'icon' => 'fa fa-notes-medical',
-        ],
-        [
-            'text' => 'Horario',
-            'url' => '#',
-            'icon' => 'fa fa-calendar',
         ],
         [
             'text' => 'Pacientes',
             'icon' => 'fa fa-users',
-            'url' => '#',
-        ],
-        [
-            'text' => 'Medicamentos',
-            'icon' => 'fa fa-syringe',
-            'url' => '#'
+            'route' => 'dashboard.patient',
         ],
         [
             'text' => 'Tratamientos',
@@ -354,7 +344,7 @@ return [
                 ],
                 [
                     'text' => 'Reportes',
-                    'url' => '#',
+                    'route' => 'dashboard.report',
                     'icon' => 'fa fa-laptop-medical'
                 ],
                 [
@@ -447,7 +437,7 @@ return [
             ]
         ],
         'Select2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',

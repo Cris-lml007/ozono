@@ -9,7 +9,7 @@ class Reservation extends Model
 {
     use HasFactory;
 
-    public $fillable = [
+    protected $fillable = [
         'person_id',
         'staff_schedule_id',
         'date'
@@ -21,5 +21,9 @@ class Reservation extends Model
 
     public function staffSchedule(){
         return $this->belongsTo(Staff_schedule::class,'staff_schedule_id','id');
+    }
+
+    public function history(){
+        return $this->hasOne(History::class,'reservation_id','id');
     }
 }
