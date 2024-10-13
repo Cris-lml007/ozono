@@ -18,20 +18,20 @@ class CreateAttention extends Component
 {
 
     public $date;
-    #[Validate('integer|min:1|max:6')]
+    #[Validate('integer|min:1|max:6', as: 'dia')]
     public $day;
     public $hour;
     public $medic;
 
     #[Validate('required|integer')]
     public $ci;
-    #[Validate('required|string')]
+    #[Validate('required|string', as:'apellido')]
     public $surname;
-    #[Validate('required|string')]
+    #[Validate('required|string', as:'nombre')]
     public $name;
-    #[Validate('required|date')]
+    #[Validate('required|date', as:'fecha')]
     public $birthdate;
-    #[Validate('required|integer')]
+    #[Validate('required|integer',as:'genero')]
     public $gender;
 
     public $allergies;
