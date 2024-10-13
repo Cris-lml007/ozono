@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Role;
+use App\Models\Reservation;
 use App\Models\Setting;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +14,19 @@ use Illuminate\Support\Facades\Gate;
 class DashboardController extends Controller
 {
     public function index(){
+        if (Auth::user()->role == Role::PATIENT){
+            $patient = Auth::user()->person;
+            $reservations = Reservation::where('person_id',$patient->id)
+                ->where('date','>',Carbon::now())->orWhere(function($query){
+                    $query->where('date',Carbon::now())->whereHas('staffSchedule',function($query){
+                        $query->whereHas('schedule',function($query){
+                            $query->where('start','>=',Carbon::now()->toTimeString())->where('end','<=',Carbon::now()->toTimeString());
+                        });
+                    });
+                })
+                ->get();
+            return view('home',['reservations' => $reservations,'ci' => $patient->ci]);
+        }
         return view('dashboard');
     }
 
@@ -103,5 +119,12 @@ class DashboardController extends Controller
             Setting::where('id',1)->update(['phone' => $request->phone]);
         }
         return redirect(route('dashboard.settings'));
+    }
+
+    public function deleteReservation(Reservation $reservation){
+        if($reservation->person->id == Auth::user()->person->id){
+            $reservation->delete();
+        }
+        return redirect()->route('dashboard.main');
     }
 }

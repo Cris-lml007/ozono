@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PdfController;
+use App\Http\Middleware\CheckBanned;
 use App\Livewire\Consultation;
 use App\Livewire\Counter;
 use App\Livewire\HistoryPatient;
@@ -9,13 +10,13 @@ use App\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/',Welcome::class);
+Route::get('/',Welcome::class)->name('welcome');
 
 Route::get('/count',Counter::class);
 
 Auth::routes();
 
-Route::middleware('auth')->prefix('/dashboard')->group(function(){
+Route::middleware(['auth',CheckBanned::class])->prefix('/dashboard')->group(function(){
     Route::controller(DashboardController::class)->group(function(){
         Route::get('/','index')->name('dashboard.main');
         Route::get('treatment','treatment')->name('dashboard.treatments');
@@ -26,6 +27,7 @@ Route::middleware('auth')->prefix('/dashboard')->group(function(){
         Route::get('settings','settings')->name('dashboard.settings');
         Route::post('settings/phone','setPhone')->name('dashboard.setPhone');
         Route::get('settings/phone','getPhone')->name('dashboard.getPhone');
+        Route::post('dashboard/reservation/{reservation}','deleteReservation')->name('dashboard.deleteReservation');
     });
     Route::get('dashboard/consent/{diagnostic}',[PdfController::class,'generateConsent'])->name('consent');
     Route::get('consultation/{reservation}',Consultation::class)->name('dashboard.consultation');

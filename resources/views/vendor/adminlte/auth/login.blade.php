@@ -16,18 +16,23 @@
     @php( $login_url = $login_url ? url($login_url) : '' )
     @php( $register_url = $register_url ? url($register_url) : '' )
     @php( $password_reset_url = $password_reset_url ? url($password_reset_url) : '' )
-@endif
+    @endif
 
-@section('auth_header', __('adminlte::adminlte.login_message'))
+    @section('auth_header', __('adminlte::adminlte.login_message'))
 
-@section('auth_body')
+    @section('auth_body')
+    @if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
     <form action="{{ $login_url }}" method="post">
         @csrf
 
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+                                             value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -36,16 +41,16 @@
             </div>
 
             @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
 
         {{-- Password field --}}
         <div class="input-group mb-3">
             <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
-                   placeholder="{{ __('adminlte::adminlte.password') }}">
+                                                   placeholder="{{ __('adminlte::adminlte.password') }}">
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -54,9 +59,9 @@
             </div>
 
             @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
             @enderror
         </div>
 
@@ -81,24 +86,24 @@
         </div>
 
     </form>
-@stop
+    @stop
 
-@section('auth_footer')
+    @section('auth_footer')
     {{-- Password reset link --}}
     @if($password_reset_url)
-        <p class="my-0">
-            <a href="{{ $password_reset_url }}">
-                {{ __('adminlte::adminlte.i_forgot_my_password') }}
-            </a>
-        </p>
+    <p class="my-0">
+    <a href="{{ $password_reset_url }}">
+        {{ __('adminlte::adminlte.i_forgot_my_password') }}
+    </a>
+    </p>
     @endif
 
     {{-- Register link --}}
     @if($register_url)
-        <p class="my-0">
-            <a href="{{ $register_url }}">
-                {{ __('adminlte::adminlte.register_a_new_membership') }}
-            </a>
-        </p>
+    <p class="my-0">
+    <a href="{{ $register_url }}">
+        {{ __('adminlte::adminlte.register_a_new_membership') }}
+    </a>
+    </p>
     @endif
-@stop
+    @stop
