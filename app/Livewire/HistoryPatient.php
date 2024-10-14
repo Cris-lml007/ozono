@@ -38,8 +38,10 @@ class HistoryPatient extends Component
     public $treatment_id;
 
     public function selectTreatment($id){
-        $this->dispatch('treatment_id',$id);
-        $this->dispatch('openModal');
+        if(History::where('detail_diagnostic_id',$id)->exists()){
+            $this->dispatch('treatment_id',$id);
+            $this->dispatch('openModal');
+        }
     }
 
     public function mount(Person $person){

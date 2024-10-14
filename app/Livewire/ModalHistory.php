@@ -58,7 +58,7 @@ class ModalHistory extends Component
     }
 
     public function prev(){
-        if($this->pos-1 >0){
+        if($this->pos-1 >=0){
             $this->pos--;
             $this->loadData();
         }

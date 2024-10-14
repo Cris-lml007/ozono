@@ -138,6 +138,7 @@ class Consultation extends Component
             $query->where('user_id',Auth::user()->id);
         })->get();
         foreach(History::where('person_id',$this->reservation->person_id)->get() as $history){
+            // dd($history);
             if($history->detailDiagnostic->diagnostic_id == $this->diagnostic->id){
                 $this->total -= $history->canceled;
             }
@@ -163,18 +164,17 @@ class Consultation extends Component
 
     public function updateOrCreateDiagnostic()
     {
-        if ($this->reservation->history == null) {
-            $this->saveVitalSigns();
-        }
         $this->validate([
             'subjetive_intensity' => 'required',
             'rate' => 'required',
             'incapacitation' => 'required',
             'consumption_painkillers' => 'required',
             'detail_diagnostic' => 'required',
-            'treatments' => 'required',
             'evaluation' => 'required',
         ]);
+        if ($this->reservation->history == null) {
+            $this->saveVitalSigns();
+        }
         if($this->treatment_new == null  and $this->treatment_save == null){
             return $this->addError('val','No se selecciono un tratamiento');
         }
@@ -226,7 +226,7 @@ class Consultation extends Component
             $d = Detail_diagnostic::create($treat);
             $this->reservation->history->detail_diagnostic_id = $d->id;
         }else{
-            $this->reservation->history->detail_diagnostic_id = $this->treatments_save;
+            $this->reservation->history->detail_diagnostic_id = $this->treatment_save;
         }
         $this->reservation->history->save();
         Reservation::upsert(
