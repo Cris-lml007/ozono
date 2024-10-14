@@ -20,6 +20,7 @@
     </title>
 
     {{-- Custom stylesheets (pre AdminLTE) --}}
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @yield('adminlte_css_pre')
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     {{-- Base Stylesheets --}}
