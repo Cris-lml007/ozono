@@ -13,6 +13,7 @@ use App\Models\Treatment;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -136,6 +137,8 @@ class Consultation extends Component
         $this->total = $this->diagnostic->detail_diagnostics()->selectRaw('SUM(price * quantity) as total')->value('total');
         $this->reservations = Reservation::where('person_id',$this->reservation->person_id)->where('date','>=',Carbon::now())->whereHas('staffSchedule',function ($query){
             $query->where('user_id',Auth::user()->id);
+        })->whereHas('history',function($query){
+            $query->where('reservation_id',null);
         })->get();
         foreach(History::where('person_id',$this->reservation->person_id)->get() as $history){
             // dd($history);
@@ -318,6 +321,9 @@ class Consultation extends Component
 
     public function mount(Reservation $reservation)
     {
+        if(Gate::allows('administration',Auth::user())){
+            return redirect()->route('dashboard.main');
+        }
         $this->setting = Setting::first();
         $this->person_id = $reservation->person->id;
         $this->ci = $reservation->person->ci;

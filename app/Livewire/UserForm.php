@@ -60,13 +60,13 @@ class UserForm extends Component
                 'gender' => $this->gender
             ]
         );
-
+        $password = strtolower(substr(str_word_count($this->surname,1)[0],0,strlen(str_word_count($this->surname,1)[0])/2).substr(str_word_count($this->name,1)[0],0,strlen(str_word_count($this->name,1)[0])/2)).$this->ci;
         User::updateOrCreate(
             ['email' => $this->email],
             [
                 'role' => $this->role,
                 'person_id' => $this->person->id,
-                'password' => $this->person->user ? $this->person->user->password : Random::generate()
+                'password' => $this->person->user ? $this->person->user->password : $password
             ]
         );
         $this->getStaff($this->person->id);
