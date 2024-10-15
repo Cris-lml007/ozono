@@ -26,7 +26,7 @@
         @yield('css')
     </head>
     <header>
-        <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/logo.png'))) }}"
+        <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/logo-white.png'))) }}"
              style="position: fixed;left: 10px;top:-20px; width: 120px;height: 100px;">
         <h6 style="color: white; position: fixed;right: 10px;">CENTRO DE OZONOTERAPIA<br>Y MEDICINA REGENERATIVA</h6>
     </header>

@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'use_ico_only' => false,
+    'use_ico_only' => true,
     'use_full_favicon' => false,
 
     /*
@@ -336,6 +336,7 @@ return [
         [
             'text' => 'Administración',
             'icon' => 'fas fa-fw fa-lock',
+            'can' => ['administration'],
             'submenu' => [
                 [
                     'text' => 'Personal',
@@ -533,5 +534,5 @@ return [
     |
      */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
