@@ -40,6 +40,11 @@
                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                     @endforeach
                 </select>
+                @error('selectObservation')
+                    <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ $message }}">
+                        <i class="fa fa-exclamation"></i>
+                    </span>
+                @enderror
                 <a class="btn btn-success" wire:click="addObservation">
                     <i class="fa fa-plus"></i>Añadir
                 </a>

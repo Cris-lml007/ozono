@@ -35,6 +35,14 @@ class TreatmentForm extends Component
         $this->dispatch('showDeleteConfirmation');
     }
 
+
+    public function messages(): array
+    {
+        return [
+            'selectObservation.integer' => 'Seleccione Uno.',
+        ];
+    }
+
     public function getTreatment($id){
         $this->treatment = Treatment::find($id);
         $this->idT = $this->treatment->id;
@@ -57,6 +65,9 @@ class TreatmentForm extends Component
     }
 
     public function addObservation(){
+        $this->validate([
+            'selectObservation' => 'integer'
+        ]);
         Detail_treatment::firstOrCreate([
             'treatment_id' => $this->idT,
             'observation_id' => $this->selectObservation
