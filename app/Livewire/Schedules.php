@@ -12,7 +12,7 @@ class Schedules extends Component
 {
     public $schedules;
     public $daySelects = [];
-    #[Validate('required|date_format:H:i|after:06:00')]
+    #[Validate('required|date_format:H:i')]
     public $start;
     #[Validate('required|date_format:H:i|after:start')]
     public $end;

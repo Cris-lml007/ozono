@@ -10,6 +10,7 @@ enum Day:int
     case JUEVES = 4;
     case VIERNES = 5;
     case SABADO = 6;
+    case DOMINGO = 0;
 
     public function display(){
         return match($this){
@@ -18,7 +19,8 @@ enum Day:int
             self::MIERCOLES => 'miercoles',
             self::JUEVES => 'jueves',
             self::VIERNES => 'viernes',
-            self::SABADO => 'sabado'
+            self::SABADO => 'sabado',
+            self::DOMINGO => 'domingo'
         };
     }
 }
