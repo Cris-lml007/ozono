@@ -282,6 +282,14 @@
                     </div>
                     <div style="width: 75%;margin-left: 5px;">
                         <div class="input-group">
+                            <span class="input-group-text">Dolor en el Cuerpo</span>
+                            <div class="form-floating border rounded-end p-1">
+                                @foreach ($body_pain as $part)
+                                    <span class="badge text-bg-primary">{{ $part }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="input-group">
                             <span class="input-group-text">Intensidad Subjetiva</span>
                             <select wire:model="subjetive_intensity" class="form-select">
                                 <option value="null">selecione</option>
@@ -346,14 +354,6 @@
                                     <i class="fa fa-exclamation"></i>
                                 </span>
                             @enderror
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">Dolor en el Cuerpo</span>
-                            <div class="form-floating border rounded-end p-1">
-                                @foreach ($body_pain as $part)
-                                    <span class="badge text-bg-primary">{{ $part }}</span>
-                                @endforeach
-                            </div>
                         </div>
                         <div class="mb-3">
                             <span class="form-label">Detalle de Diagnostico</span>
