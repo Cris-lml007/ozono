@@ -6,6 +6,19 @@
         <div class="input-group">
             <span class="input-group-text">CI</span>
             <input wire:model.blur="ci" type="number" class="form-control">
+            <span class="input-group-text">Expedito</span>
+            {{-- <input wire:model.blur="ci" type="number" class="form-control"> --}}
+            <select wire:model="exp" class="form-select">
+                <option value="OR">OR</option>
+                <option value="LP">LP</option>
+                <option value="SCZ">SCZ</option>
+                <option value="TJA">TJA</option>
+                <option value="PD">PD</option>
+                <option value="CBBA">CBBA</option>
+                <option value="CH">CH</option>
+                <option value="BE">BE</option>
+                <option value="EX">EX</option>
+            </select>
             @error('ci')
                 <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ $message }}">
                     <i class="fa fa-exclamation"></i>
@@ -60,6 +73,10 @@
                     <i class="fa fa-exclamation"></i>
                 </span>
             @enderror
+        </div>
+        <div class="input-group">
+            <span class="input-group-text">Contraseña</span>
+            <input wire:model="password" class="form-control" readonly>
         </div>
         <div class="input-group">
             <span class="input-group-text">Rol</span>

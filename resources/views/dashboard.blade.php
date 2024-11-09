@@ -21,7 +21,7 @@
         </x-slot>
     </x-card>
 
-    <x-modal id="modalReservation" title="Nueva Atención" option="modal-xl">
+    <x-modal id="modalReservation" title="Nueva Atención" style="width: 500px;">
         <livewire:create-attention></livewire:create-attention>
     </x-modal>
 

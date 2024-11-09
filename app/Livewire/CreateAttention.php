@@ -40,6 +40,7 @@ class CreateAttention extends Component
 
 
     public $person;
+    public $exp;
 
     public function rules(){
         return [
@@ -67,6 +68,7 @@ class CreateAttention extends Component
             $this->allergies = $this->person->allergies;
             $this->surgeries = $this->person->surgeries;
             $this->pathological = $this->person->pathological;
+            $this->exp = $this->person->exp;
         } else {
             $this->person = null;
             $this->reset(['surname', 'name', 'birthdate', 'gender']);
@@ -85,7 +87,8 @@ class CreateAttention extends Component
                 'gender' => $this->gender,
                 'allergies' => $this->allergies,
                 'pathological' => $this->pathological,
-                'surgeries' => $this->surgeries
+                'surgeries' => $this->surgeries,
+                'exp' => $this->exp
             ]);
         }
         Reservation::create([

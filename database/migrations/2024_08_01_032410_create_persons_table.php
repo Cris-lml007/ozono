@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('persons', function (Blueprint $table) {
             $table->id();
             $table->integer('ci')->nullable(false);
+            $table->enum('exp',['OR','LP','SCZ','CBBA','PT','CH','TJA','BE','PD','EX']);
             $table->string('surname')->nullable(false);
             $table->string('name')->nullable(false);
             $table->date('birthdate')->nullable(false);

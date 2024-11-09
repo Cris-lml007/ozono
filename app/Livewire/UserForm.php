@@ -24,6 +24,9 @@ class UserForm extends Component
     public $gender;
     public $email;
     public $role;
+    public $password;
+
+    public $exp;
 
     public $daySelect;
     public $schedule_day;
@@ -57,10 +60,12 @@ class UserForm extends Component
                 'surname' => $this->surname,
                 'name' => $this->name,
                 'birthdate' => $this->birthdate,
-                'gender' => $this->gender
+                'gender' => $this->gender,
+                'exp' => $this->exp
             ]
         );
         $password = strtolower(substr(str_word_count($this->surname,1)[0],0,strlen(str_word_count($this->surname,1)[0])/2).substr(str_word_count($this->name,1)[0],0,strlen(str_word_count($this->name,1)[0])/2)).$this->ci;
+        $this->password = $password;
         User::updateOrCreate(
             ['email' => $this->email],
             [
@@ -77,12 +82,14 @@ class UserForm extends Component
         $this->person = Person::find($id);
         $this->id = $this->person->id;
         $this->ci = $this->person->ci;
+        $this->exp = $this->person->exp;
         $this->surname = $this->person->surname;
         $this->name = $this->person->name;
         $this->gender = $this->person->gender;
         $this->email = $this->person->user->email;
         $this->role = $this->person->user->role;
         $this->birthdate = $this->person->birthdate;
+        $this->password =strtolower(substr(str_word_count($this->surname,1)[0],0,strlen(str_word_count($this->surname,1)[0])/2).substr(str_word_count($this->name,1)[0],0,strlen(str_word_count($this->name,1)[0])/2)).$this->ci;
         $this->validate();
     }
 
