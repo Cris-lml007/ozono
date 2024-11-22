@@ -284,7 +284,7 @@
         </x-slot>
     </x-card>
 
-    <x-modal id="modal" title="Historial" option="modal-xl">
+    <x-modal id="modal" title="Historial" style="modal-xl">
         <livewire:modal-history></livewire:modal-history>
     </x-modal>
 </div>

@@ -22,7 +22,7 @@
     </div>
     <livewire:card-table-user title="Medicos" model="Person" :heads="$medic" headSelect="ci" modal="modalUser" emit="staffEdit" />
 
-    <x-modal id="modalUser" title="Nuevo Medico" option="" style="width: 500px;">
+    <x-modal id="modalUser" title="Nuevo Medico" style="" style="width: 500px;">
         <livewire:user-form/>
     </x-modal>
 @endsection
