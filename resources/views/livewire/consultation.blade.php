@@ -281,6 +281,26 @@
                         </svg>
                     </div>
                     <div style="width: 75%;margin-left: 5px;">
+                        <div class="mb-3">
+                            <span class="form-label">Motivo Consulta</span>
+                            <textarea wire:model="consultation" class="form-control" rows="2" cols=""></textarea>
+                            @error('consultation')
+                                <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
+                                    data-bs-title="{{ $message }}">
+                                    <i class="fa fa-exclamation"></i>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <span class="form-label">Enfermedad Actual</span>
+                            <textarea wire:model="disease" class="form-control" rows="2" cols=""></textarea>
+                            @error('diasease')
+                                <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
+                                    data-bs-title="{{ $message }}">
+                                    <i class="fa fa-exclamation"></i>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="input-group">
                             <span class="input-group-text">Dolor en el Cuerpo</span>
                             <div class="form-floating border rounded-end p-1">
@@ -289,66 +309,10 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="input-group">
-                            <span class="input-group-text">Intensidad Subjetiva</span>
-                            <select wire:model="subjetive_intensity" class="form-select">
-                                <option value="null">selecione</option>
-                                <option value="1">Sin Dolor</option>
-                                <option value="2">Ligero</option>
-                                <option value="3">Molesto</option>
-                                <option value="4">Intenso</option>
-                                <option value="5">Insoportable</option>
-                            </select>
-                            @error('subjetive_intensity')
-                                <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
-                                    data-bs-title="{{ $message }}">
-                                    <i class="fa fa-exclamation"></i>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">Frecuencia</span>
-                            <select wire:model="rate" class="form-select">
-                                <option value="null">Seleccione</option>
-                                <option value="1">Nunca</option>
-                                <option value="2">Raramente</option>
-                                <option value="3">Frecuente</option>
-                                <option value="4">Muy Frecuente</option>
-                            </select>
-                            @error('rate')
-                                <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
-                                    data-bs-title="{{ $message }}">
-                                    <i class="fa fa-exclamation"></i>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">Consumo de Analgesicos</span>
-                            <select wire:model="consumption_painkillers" class="form-select">
-                                <option value="null">Seleccione</option>
-                                <option value="1">Nunca</option>
-                                <option value="2">Ocasional</option>
-                                <option value="3">Regular</option>
-                                <option value="4">Mucho</option>
-                            </select>
-                            @error('consumption_painkillers')
-                                <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
-                                    data-bs-title="{{ $message }}">
-                                    <i class="fa fa-exclamation"></i>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-text">Incapacitación</span>
-                            <select wire:model="incapacitation" class="form-select">
-                                <option value="null">Seleccione</option>
-                                <option value="1">Ninguna</option>
-                                <option value="2">Ligero</option>
-                                <option value="3">N. Ayuda</option>
-                                <option value="4">Incapacitable</option>
-                            </select>
-
-                            @error('incapacitation')
+                        <div class="mb-3">
+                            <span class="form-label">Examen Fisico</span>
+                            <textarea wire:model="physicalExam" class="form-control" rows="2" cols=""></textarea>
+                            @error('physicalExam')
                                 <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
                                     data-bs-title="{{ $message }}">
                                     <i class="fa fa-exclamation"></i>
@@ -357,7 +321,7 @@
                         </div>
                         <div class="mb-3">
                             <span class="form-label">Detalle de Diagnostico</span>
-                            <textarea wire:model="detail_diagnostic" class="form-control" rows="6" cols=""></textarea>
+                            <textarea wire:model="detail_diagnostic" class="form-control" rows="3" cols=""></textarea>
                             @error('detail_diagnostic')
                                 <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
                                     data-bs-title="{{ $message }}">

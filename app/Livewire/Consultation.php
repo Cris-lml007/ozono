@@ -43,10 +43,9 @@ class Consultation extends Component
     public $imcStatus;
 
 
-    public $subjetive_intensity;
-    public $rate;
-    public $consumption_painkillers;
-    public $incapacitation;
+    public $consultation;
+    public $disease;
+    public $physicalExam;
     public $body_pain = [];
     public $detail_diagnostic;
 
@@ -130,10 +129,9 @@ class Consultation extends Component
 
         $this->detail_diagnostic = $this->diagnostic->description;
         $this->body_pain = explode(',',$this->diagnostic->body_pain);
-        $this->rate = $this->diagnostic->rate;
-        $this->consumption_painkillers = $this->diagnostic->consumption_painkillers;
-        $this->incapacitation = $this->diagnostic->incapacitation;
-        $this->subjetive_intensity = $this->diagnostic->subjetive_intensity;
+        $this->consultation = $this->diagnostic->consultation;
+        $this->disease = $this->diagnostic->disease;
+        $this->physicalExam = $this->diagnostic->physicalExam;
         $this->total = $this->diagnostic->detail_diagnostics()->selectRaw('SUM(price * quantity) as total')->value('total');
         $this->reservations = Reservation::where('person_id',$this->reservation->person_id)->where('date','>=',Carbon::now())->whereHas('staffSchedule',function ($query){
             $query->where('user_id',Auth::user()->id);
@@ -168,10 +166,9 @@ class Consultation extends Component
     public function updateOrCreateDiagnostic()
     {
         $this->validate([
-            'subjetive_intensity' => 'required',
-            'rate' => 'required',
-            'incapacitation' => 'required',
-            'consumption_painkillers' => 'required',
+            'consultation' => 'required',
+            'disease' => 'required',
+            'physicalExam' => 'required',
             'detail_diagnostic' => 'required',
             'evaluation' => 'required',
         ]);
@@ -195,10 +192,9 @@ class Consultation extends Component
         }
         $this->diagnostic->description = $this->detail_diagnostic;
         $this->diagnostic->body_pain = implode(',',$this->body_pain);
-        $this->diagnostic->rate = $this->rate;
-        $this->diagnostic->consumption_painkillers = $this->consumption_painkillers;
-        $this->diagnostic->incapacitation = $this->incapacitation;
-        $this->diagnostic->subjetive_intensity = $this->subjetive_intensity;
+        $this->diagnostic->consultation = $this->consultation;
+        $this->diagnostic->disease = $this->disease;
+        $this->diagnostic->physicalExam = $this->physicalExam;
         $this->diagnostic->save();
         $list = [];
         $treat = null;
@@ -359,11 +355,10 @@ class Consultation extends Component
             'schedules',
             'treatments',
             'evaluation',
-            'rate',
-            'incapacitation',
+            'consultation',
+            'disease',
             'body_pain',
-            'subjetive_intensity',
-            'consumption_painkillers',
+            'physicalExam',
             'date',
             'schedule',
             'diagnostic',

@@ -120,7 +120,7 @@
                         <thead>
                             <tr>
                                 <th>Dia</th>
-                                @for ($i = 7; $i <= 24; $i++)
+                                @for ($i = 1; $i <= 24; $i++)
                                     <th>{{ $i < 10 ? 0 : '' }}{{ $i }}:00</th>
                                 @endfor
                             </tr>
@@ -128,7 +128,7 @@
                         <tbody>
                             @foreach (Day::cases() as $day)
                                 @php
-                                    $hr = 7;
+                                    $hr = 1;
                                 @endphp
                                 <tr>
                                     <th>{{ $day->display() }}</th>
