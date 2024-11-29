@@ -1,5 +1,7 @@
 @section('content_header')
+<div class="d-flex justify-content-between">
     <h1>Historial Clinico</h1>
+    <a href="{{route('dashboard.history',$person->id)}}" class="btn btn-success"><i class="fa fa-file-export"></i> Exportar</a>
 @endsection
 <div>
     <x-card title="">

@@ -17,10 +17,9 @@ return new class extends Migration
             // $table->dateTime('date')->useCurrent();
             $table->string('description');
             $table->boolean('status')->default(true);
-            $table->enum('subjetive_intensity',[1,2,3,4,5]);
-            $table->enum('rate',[1,2,3,4]);
-            $table->enum('consumption_painkillers',[1,2,3,4]);
-            $table->enum('incapacitation',[1,2,3,4]);
+            $table->string('disease');
+            $table->string('consultation');
+            $table->string('physicalExam');
             $table->set('body_pain',["cabeza","rostro","cuello","hombro derecho","hombro izquierdo","antebrazo derecho","antebrazo izquierdo","codo derecho","codo izquierdo","mano derecha","manos izquierdas","pecho derecho","pecho izquierdo","costillas izquierdas","costillas derechas","barriga","vientre izquierdo","vientre derecho","muslo derecho","interior del muslo derecho","muslo interno izquierdo","muslo izquierdo","genitales","rodilla derecha","rodilla izquierda","pantorrilla izquierda","pantorrilla derecha","pies derechos","pies izquierdos","cabeza hacia atras","nuca","clavicula izquierda","atras-izquierda","clavicula derecha","atras-derecha","brazo derecho","brazo izquierdo","lomo","columna","nalga","pierna izquierda","pierna derecha"]);
             $table->timestamps();
         });
