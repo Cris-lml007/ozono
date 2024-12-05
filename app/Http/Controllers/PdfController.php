@@ -21,6 +21,16 @@ class PdfController extends Controller
         return $pdf->stream();
     }
 
+    public function generatePayment(Diagnostic $diagnostic){
+        $pdf = pdf::setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true
+        ])->loadView('pdf.history-payment',compact(['diagnostic']));
+        $pdf->setPaper('letter');
+        $pdf->render();
+        return $pdf->stream();
+    }
+
     public function generateDiagnostic(Person $person){
         $pdf = pdf::setOptions([
             'isHtml5ParserEnabled' => true,

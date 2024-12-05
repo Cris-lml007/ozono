@@ -1,30 +1,41 @@
 
 <html style="margin: 0;">
-    <head>
-        {{-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> --}}
-        <style>
-{{ file_get_contents(public_path('/css/w3.css')) }} header {
-    background-color: #007BFF;
-    height: 60px;
-}
+<head>
+    <style>
+        {{ file_get_contents(public_path('/css/w3.css')) }}
 
-        p {
+        @page {
+            margin-top: 100px; /* Espacio para el encabezado */
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #007BFF;
+            text-align: center;
+        }
+
+        .header-content {
+            color: white;
+            font-size: 10pt;
+            line-height: 1.2;
+            padding: 10px;
+        }
+
+        p, ul, td {
             font-size: 12pt;
             text-align: justify;
         }
 
-        ul {
-            font-size: 12pt;
-            margin-top: 0;
-            margin-bottom: 0;
+        body {
+            padding-top: 60px; /* Asegura que el contenido no se superponga al encabezado */
         }
-
-        td{
-            font-size: 12pt;
-        }
-        </style>
-        @yield('css')
-    </head>
+    </style>
+    @yield('css')
+</head>
     <header>
         <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/images/logo-white.png'))) }}"
              style="position: fixed;left: 10px;top:-20px; width: 120px;height: 100px;">

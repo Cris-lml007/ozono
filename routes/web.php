@@ -32,6 +32,7 @@ Route::middleware(['auth',CheckBanned::class])->prefix('/dashboard')->group(func
     Route::get('dashboard/consent/{diagnostic}',[PdfController::class,'generateConsent'])->name('consent');
     Route::get('consultation/{reservation}',Consultation::class)->name('dashboard.consultation');
     Route::get('patient/{person}',HistoryPatient::class)->name('dashboard.historyPatient');
+    Route::get('/patient/payment/{diagnostic}',[PdfController::class,'generatePayment'])->name('dashboard.payment');
     Route::get('/patient/{person}/history',[PdfController::class,'generateDiagnostic'])->name('dashboard.history');
 });
 

@@ -51,6 +51,13 @@
                                 <td>{{ $diag->id }}</td>
                                 <td>{{ $diag->description }}</td>
                                 <td>{{ $diag->status == 1 ? 'En progreso' : 'Finalizado' }}</td>
+                                <td>
+                                    <button wire:click="getDiagnostic({{ $diag->id }})" class="btn btn-primary"><i class="fa fa-eye"></i></button>
+                                    <a href="{{route('consent',$diag->id)}}" class="btn btn-primary">
+                                        <i class="fa fa-file"></i>
+                                    </a>
+                                    <a href="{{route('dashboard.payment',$diag->id)}}" class="btn btn-secondary"><i class="fa fa-money-bill"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
