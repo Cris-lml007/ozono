@@ -17,6 +17,7 @@
                 <option value="CBBA">CBBA</option>
                 <option value="CH">CH</option>
                 <option value="BE">BE</option>
+                <option value="PT">PT</option>
                 <option value="EX">EX</option>
             </select>
             @error('ci')

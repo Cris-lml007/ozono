@@ -9,7 +9,7 @@
         <div style="width: 100%;">
             <div class="input-group">
                 <span class="input-group-text">CI</span>
-                <input wire:model="ci" wire:blur="getPerson" class="form-control" type="number">
+                <input wire:model.live="ci" wire:blur="getPerson" class="form-control" type="number">
                 <select wire:model="exp" class="form-select" @if ($this->person != null) disabled @endif>
                     <option value="OR">OR</option>
                     <option value="LP">LP</option>
@@ -19,6 +19,7 @@
                     <option value="CBBA">CBBA</option>
                     <option value="CH">CH</option>
                     <option value="BE">BE</option>
+                    <option value="PT">PT</option>
                     <option value="EX">EX</option>
                 </select>
                 <a wire:click="getPerson" class="btn btn-primary"><i class="fa fa-search"></i></a>
@@ -30,7 +31,7 @@
                 @enderror
                 <div class="input-group">
                     <span class="input-group-text">Apellidos</span>
-                    <input wire:model="surname" class="form-control" type="text"
+                    <input wire:model.live="surname" class="form-control" type="text"
                         @if ($this->person != null) readonly @endif>
                     @error('surname')
                         <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -41,7 +42,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-text">Nombres</span>
-                    <input wire:model="name" class="form-control" type="text"
+                    <input wire:model.live="name" class="form-control" type="text"
                         @if ($this->person != null) readonly @endif>
                     @error('name')
                         <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"

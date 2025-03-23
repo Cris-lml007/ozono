@@ -4,7 +4,7 @@
 @endphp
 
 @section('content')
-    <h1 style="text-align: center;">CONSETIMIENTO INFORMADO</h1>
+    <h1 style="text-align: center;">CONSENTIMIENTO INFORMADO</h1>
     <div>
         <p>
             Yo

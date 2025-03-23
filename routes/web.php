@@ -27,7 +27,7 @@ Route::middleware(['auth',CheckBanned::class])->prefix('/dashboard')->group(func
         Route::get('settings','settings')->name('dashboard.settings');
         Route::post('settings/phone','setPhone')->name('dashboard.setPhone');
         Route::get('settings/phone','getPhone')->name('dashboard.getPhone');
-        Route::post('dashboard/reservation/{reservation}','deleteReservation')->name('dashboard.deleteReservation');
+        // Route::post('dashboard/reservation/{reservation}','deleteReservation')->name('dashboard.deleteReservation');
     });
     Route::get('dashboard/consent/{diagnostic}',[PdfController::class,'generateConsent'])->name('consent');
     Route::get('consultation/{reservation}',Consultation::class)->name('dashboard.consultation');

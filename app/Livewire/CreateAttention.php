@@ -23,11 +23,11 @@ class CreateAttention extends Component
     public $hour;
     public $medic;
 
-    #[Validate('required|integer')]
+    #[Validate('required|integer|max_digits:7')]
     public $ci;
-    #[Validate('required|string', as:'apellido')]
+    #[Validate('required|string|alpha:ascii', as:'apellido')]
     public $surname;
-    #[Validate('required|string', as:'nombre')]
+    #[Validate('required|string|alpha:ascii', as:'nombre')]
     public $name;
     #[Validate('required|date', as:'fecha')]
     public $birthdate;

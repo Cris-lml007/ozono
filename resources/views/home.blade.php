@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-end mb-1">
         <button class="btn btn-success" data-bs-target="#modal" data-bs-toggle="modal">
             <i class="nf nf-fa-plus"></i>
-            Añadir Reservation
+            Añadir Reservación
         </button>
     </div>
     <x-card title="Mis Reservaciones">
@@ -22,13 +22,13 @@
                     <td>{{$reservation->staffSchedule->staff->person->surname . ' ' . $reservation->staffSchedule->staff->person->name}}</td>
                     <td>{{$reservation->date}}</td>
                     <td>{{$reservation->staffSchedule->schedule->start}}</td>
-                    <td>
-                        <form action="{{route('dashboard.deleteReservation',$reservation->id)}}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-danger">
-                                <i class="nf nf-fa-trash"></i>
-                            </button>
-                        </form>
+                    {{-- <td> --}}
+                    {{--     <form action="{{route('dashboard.deleteReservation',$reservation->id)}}" method="post"> --}}
+                    {{--         @csrf --}}
+                    {{--         <button type="submit" class="btn btn-danger"> --}}
+                    {{--             <i class="nf nf-fa-trash"></i> --}}
+                    {{--         </button> --}}
+                    {{--     </form> --}}
                     </td>
                 </tr>
                 @endforeach
