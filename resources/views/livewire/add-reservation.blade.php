@@ -24,11 +24,6 @@
                     {{ $schedule->staff->person->surname . ' ' . $schedule->staff->person->name }}</option>
             @endforeach
         </select>
-        @error('medic')
-            <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip" data-bs-title="{{ $message }}">
-                <i class="nf nf-fa-exclamation"></i>
-            </span>
-        @enderror
     </div>
     <div class="modal-footer px-0">
         <a wire:click="restart" data-bs-dismiss="modal" class="btn btn-danger">Cancelar</a>
@@ -38,13 +33,12 @@
 
 @script
     <script>
-        Livewire.hook('morph.updated', ({
-            component,
-            cleanup
-        }) => {
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(
-                tooltipTriggerEl))
-        })
+        Livewire.on('alert', function() {
+            window.swal.fire({
+                title: "Hubo un Error",
+                text: "Este Horario ya se encuentra ocupado o no es valido.",
+                icon: "warning"
+            });
+        });
     </script>
 @endscript

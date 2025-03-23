@@ -9,14 +9,14 @@ use App\Models\Schedule;
 use App\Models\Staff_schedule;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class AddReservation extends Component
 {
     public $date;
-    #[Validate('integer|min:1|max:6')]
+    // #[Validate('integer|min:1|max:6')]
     public $day;
     public $hour;
     public $medic;
@@ -24,14 +24,16 @@ class AddReservation extends Component
     public $person;
     public $ci;
 
-    public function rules(){
-        return [
-            'medic' => [
-                'required',
-                Rule::unique('reservations','staff_schedule_id')->where(fn(Builder $query) => $query->where('date',$this->date))
-            ]
-        ];
-    }
+    public $listeners = ['alert'];
+
+    // public function rules(){
+    //     return [
+    //         'medic' => [
+    //             'required',
+    //             Rule::unique('reservations','staff_schedule_id')->where(fn(Builder $query) => $query->where('date',$this->date))
+    //         ]
+    //     ];
+    // }
 
     public function getHours()
     {
@@ -40,7 +42,16 @@ class AddReservation extends Component
 
     public function createAttention()
     {
-        $this->validate();
+        $validator = Validator::make(['medic'=> $this->medic,'date' => $this->date], [
+            'medic' => [
+                'required',
+                Rule::unique('reservations', 'staff_schedule_id')->where(fn(Builder $query) => $query->where('date', $this->date))
+            ]
+        ]);
+        if($validator->fails() || Carbon::parse($this->date) < Carbon::now()->addDays(7)){
+            $this->dispatch('alert');
+            return;
+        }
         Reservation::create([
             'person_id' => $this->person->id,
             'staff_schedule_id' => $this->medic,

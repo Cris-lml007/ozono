@@ -9,7 +9,7 @@
         <div style="width: 100%;">
             <div class="input-group">
                 <span class="input-group-text">CI</span>
-                <input wire:model="ci" wire:keydown.enter="getPerson" class="form-control" type="number">
+                <input wire:model="ci" wire:blur="getPerson" class="form-control" type="number">
                 <select wire:model="exp" class="form-select" @if ($this->person != null) disabled @endif>
                     <option value="OR">OR</option>
                     <option value="LP">LP</option>
