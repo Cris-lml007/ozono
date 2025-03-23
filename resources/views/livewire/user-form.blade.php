@@ -97,7 +97,7 @@
                 <h5>Horario</h5>
                 <div class="input-group">
                     <span class="input-group-text">Dia</span>
-                    <select wire:model.blur="daySelect" class="form-select">
+                    <select wire:model.live="daySelect" class="form-select">
                         <option>Seleccione</option>
                         <option value="1">Lunes</option>
                         <option value="2">Martes</option>
@@ -108,7 +108,7 @@
                     </select>
                     <span class="input-group-text">Horario</span>
                     <select wire:model="schedule_day" class="form-select">
-                        <option>Seleccione</option>
+                        <option value="null">Seleccione</option>
                         @foreach ($this->getDays($this->daySelect) as $d)
                         <option value="{{$d->id}}">{{$d->start . '-'.$d->end}}</option>
                         @endforeach

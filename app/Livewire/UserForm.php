@@ -110,6 +110,7 @@ class UserForm extends Component
     }
 
     public function getDays($day){
+        $this->schedule_day = "null";
         return Schedule::where('day',$day)->orderBy('start')->get();
     }
 
@@ -118,10 +119,12 @@ class UserForm extends Component
     }
 
     public function addSchedule(){
-        Staff_schedule::create([
-            'user_id' => $this->person->user->id,
-            'schedule_id' => $this->schedule_day
-        ]);
+        if(!Staff_schedule::where('user_id',$this->person->user->id)->where('schedule_id',$this->schedule_day)->exists()){
+            Staff_schedule::create([
+                'user_id' => $this->person->user->id,
+                'schedule_id' => $this->schedule_day
+            ]);
+        }
     }
 
     public function deleteSchedule($id){
