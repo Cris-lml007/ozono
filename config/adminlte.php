@@ -345,8 +345,24 @@ return [
                 ],
                 [
                     'text' => 'Reportes',
-                    'route' => 'dashboard.report',
-                    'icon' => 'fa fa-laptop-medical'
+                    'icon' => 'fa fa-laptop-medical',
+                    'submenu' => [
+                        [
+                            'text' => 'Graficos',
+                            'route' => 'dashboard.report',
+                            'icon' => 'fa fa-chart-line'
+                        ],
+                        [
+                            'text' => 'Reporte de Citas',
+                            'route' => 'dashboard.reportAppointment',
+                            'icon' => 'fa fa-calendar'
+                        ],
+                        [
+                            'text' => 'Reporte de Gananacias',
+                            'url' => '#',
+                            'icon' => 'fa fa-money-bill-wave'
+                        ]
+                    ]
                 ],
                 [
                     'text' => 'Configuraciones',

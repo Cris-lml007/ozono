@@ -30,6 +30,14 @@ class DashboardController extends Controller
         return view('dashboard');
     }
 
+    public function reportAppointment(){
+        if( !Gate::allows('administration',Auth::user())){
+            abort(404);
+        }
+        $reservations = Reservation::where('date','>=',Carbon::now())->get();
+        return view('report-appointment',['reservations' => $reservations]);
+    }
+
     public function staff(){
         if( !Gate::allows('administration',Auth::user())){
             abort(404);
