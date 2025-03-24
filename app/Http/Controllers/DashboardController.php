@@ -38,6 +38,13 @@ class DashboardController extends Controller
         return view('report-appointment',['reservations' => $reservations]);
     }
 
+    public function reportIncome(){
+        if( !Gate::allows('administration',Auth::user())){
+            abort(404);
+        }
+        return view('report-income');
+    }
+
     public function staff(){
         if( !Gate::allows('administration',Auth::user())){
             abort(404);

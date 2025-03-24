@@ -359,7 +359,7 @@ return [
                         ],
                         [
                             'text' => 'Reporte de Gananacias',
-                            'url' => '#',
+                            'route' => 'dashboard.reportIncome',
                             'icon' => 'fa fa-money-bill-wave'
                         ]
                     ]

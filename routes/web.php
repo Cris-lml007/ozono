@@ -25,6 +25,7 @@ Route::middleware(['auth',CheckBanned::class])->prefix('/dashboard')->group(func
         Route::get('staff','staff')->name('dashboard.staff');
         Route::get('report','report')->name('dashboard.report');
         Route::get('report/appointment','reportAppointment')->name('dashboard.reportAppointment');
+        Route::get('report/income','reportIncome')->name('dashboard.reportIncome');
         Route::get('settings','settings')->name('dashboard.settings');
         Route::post('settings/phone','setPhone')->name('dashboard.setPhone');
         Route::get('settings/phone','getPhone')->name('dashboard.getPhone');
