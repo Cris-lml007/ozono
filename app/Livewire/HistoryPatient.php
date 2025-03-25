@@ -27,10 +27,9 @@ class HistoryPatient extends Component
     public $detail_diagnostic;
     public $diagnostics = [];
 
-    public $rate;
-    public $subjetive_intensity;
-    public $incapacitation;
-    public $consumption_painkillers;
+    public $consultation;
+    public $disease;
+    public $physicalExam;
 
     public $total;
     public $canceled;
@@ -64,10 +63,10 @@ class HistoryPatient extends Component
 
         $this->detail_diagnostic = $this->diagnostic->description;
         $this->body_pain = explode(',',$this->diagnostic->body_pain);
-        $this->rate = $this->diagnostic->rate;
-        $this->consumption_painkillers = $this->diagnostic->consumption_painkillers;
-        $this->incapacitation = $this->diagnostic->incapacitation;
-        $this->subjetive_intensity = $this->diagnostic->subjetive_intensity;
+        $this->consultation = $this->diagnostic->consultation;
+        $this->disease = $this->diagnostic->disease;
+        $this->physicalExam = $this->diagnostic->physicalExam;
+        // $this->subjetive_intensity = $this->diagnostic->subjetive_intensity;
         $this->total = $this->diagnostic->detail_diagnostics()->selectRaw('SUM(price * quantity) as total')->value('total');
         // $this->reservations = Reservation::where('person_id',$this->reservation->person_id)->where('date','>=',Carbon::now())->whereHas('staffSchedule',function ($query){
         //     $query->where('user_id',Auth::user()->id);
