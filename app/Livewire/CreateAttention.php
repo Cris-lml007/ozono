@@ -25,9 +25,9 @@ class CreateAttention extends Component
 
     #[Validate('required|integer|max_digits:7')]
     public $ci;
-    #[Validate('required|string|alpha:ascii', as:'apellido')]
+    #[Validate('required|string|regex:/^[a-zA-Z\s]+$/', as:'apellido')]
     public $surname;
-    #[Validate('required|string|alpha:ascii', as:'nombre')]
+    #[Validate('required|string|regex:/^[a-zA-Z\s]+$/', as:'nombre')]
     public $name;
     #[Validate('required|date', as:'fecha')]
     public $birthdate;
