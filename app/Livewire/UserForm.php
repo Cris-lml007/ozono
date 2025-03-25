@@ -14,6 +14,7 @@ use Nette\Utils\Random;
 class UserForm extends Component
 {
     public $id;
+    #[validate('required|integer|min_digits:7|max_digits:8')]
     public $ci;
     #[validate('required|string')]
     public $surname;

@@ -9,6 +9,7 @@ use App\Models\Schedule;
 use App\Models\Staff_schedule;
 use App\Models\Treatment;
 use Carbon\Carbon;
+use Closure;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
@@ -23,13 +24,13 @@ class CreateAttention extends Component
     public $hour;
     public $medic;
 
-    #[Validate('required|integer|max_digits:7')]
+    #[Validate('required|integer|min_digits:7|max_digits:8')]
     public $ci;
     #[Validate('required|string|regex:/^[a-zA-Z\s]+$/', as:'apellido')]
     public $surname;
     #[Validate('required|string|regex:/^[a-zA-Z\s]+$/', as:'nombre')]
     public $name;
-    #[Validate('required|date', as:'fecha')]
+    // #[Validate('required|date', as:'fecha')]
     public $birthdate;
     #[Validate('required|integer',as:'genero')]
     public $gender;
@@ -47,7 +48,15 @@ class CreateAttention extends Component
             'medic' => [
                 'required',
                 Rule::unique('reservations','staff_schedule_id')->where(fn(Builder $query) => $query->where('date',$this->date))
-            ]
+            ],
+            'birthdate' => [
+                'date',
+                function (string $attribute, mixed $value, Closure $fail) {
+                    if (abs(Carbon::parse($value)->age - Carbon::now()->age) < 10) {
+                        $fail("La fecha de Nacimiento no es Valida");
+                    }
+                }
+        ]
         ];
     }
 
