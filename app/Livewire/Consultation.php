@@ -317,9 +317,9 @@ class Consultation extends Component
 
     public function mount(Reservation $reservation)
     {
-        if(Gate::allows('administration',Auth::user())){
-            return redirect()->route('dashboard.main');
-        }
+        // if(Gate::allows('administration',Auth::user())){
+        //     return redirect()->route('dashboard.main');
+        // }
         $this->setting = Setting::first();
         $this->person_id = $reservation->person->id;
         $this->ci = $reservation->person->ci;

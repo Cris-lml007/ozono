@@ -4,7 +4,7 @@
         <input wire:model="date_start" type="date" class="form-control">
         <label class="col-form-label">Hasta</label>
         <input wire:model="date_end" type="date" class="form-control">
-        <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+        <button class="btn btn-primary" wire:click="$refresh"><i class="fa fa-search"></i></button>
     </div>
     <table class="table table-striped">
         <thead>
@@ -27,7 +27,7 @@
                 <td>{{$item->diagnostic->description}}</td>
                 <td>{{$item->canceled}}</td>
                 <td>
-                    <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                    <a href="{{route('dashboard.consultation',$item->reservation->id)}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                 </td>
             </tr>
             @endforeach
@@ -36,7 +36,7 @@
             <tr>
                 <td colspan="3"></td>
                 <td><strong>TOTAL</strong></td>
-                <td>{{$total}}</td>
+                <td>{{$total}} Bs</td>
             </tr>
         </tfoot>
     </table>
