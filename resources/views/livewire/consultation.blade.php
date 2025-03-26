@@ -44,7 +44,7 @@
             <h5 class="card-text mt-1">Signos Vitales</h5>
             <div class="input-group">
                 <span class="input-group-text"><i class="nf nf-fa-droplet"></i></span>
-                <input wire:model="presure" type="text" class="form-control" placeholder="Presion Arterial(mmHg)">
+                <input wire:model="presure" type="text" class="form-control" placeholder="Presion Arterial(mmHg)" {{($filled ? "readonly" : "")}}>
                 <span class="input-group-text">mmHg</span>
                 @error('presure')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -53,7 +53,7 @@
                     </span>
                 @enderror
                 <span class="input-group-text"><i class="fa fa-temperature-low"></i></span>
-                <input wire:model="temperature" type="number" class="form-control" placeholder="Temperatura(C°)">
+                <input wire:model="temperature" type="number" class="form-control" placeholder="Temperatura(C°)" {{($filled ? "readonly" : "")}}>
                 <span class="input-group-text">C°</span>
                 @error('temperature')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -65,7 +65,7 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="nf nf-fa-heart_pulse"></i></span>
                 <input wire:model="heart_rate" type="number" class="form-control"
-                    placeholder="Frecuencia Cardiaca(x Minuto)">
+                    placeholder="Frecuencia Cardiaca(x Minuto)" {{($filled ? "readonly" : "")}}>
                 <span class="input-group-text">lpm</span>
                 @error('heart_rate')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -75,7 +75,7 @@
                 @enderror
                 <span class="input-group-text"><i class="nf nf-fa-lungs"></i></span>
                 <input wire:model="respiratory_rate" type="number" class="form-control"
-                    placeholder="Frecuencia Respiratoria(x Minuto)">
+                    placeholder="Frecuencia Respiratoria(x Minuto)" {{($filled ? "readonly" : "")}}>
                 <span class="input-group-text">rpm</span>
                 @error('respiratory_rate')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -86,10 +86,10 @@
             </div>
             <div class="input-group">
                 <span class="input-group-text"><i class="nf nf-md-scale_bathroom"></i></span>
-                <input wire:model.live="weight" type="number" class="form-control" placeholder="Peso(Kg)">
+                <input wire:model.live="weight" type="number" class="form-control" placeholder="Peso(Kg)" {{($filled ? "readonly" : "")}}>
                 <span class="input-group-text">Kg</span>
                 <span class="input-group-text"><i class="nf nf-md-human_male_height"></i></span>
-                <input wire:model.live="height" type="number" class="form-control" placeholder="Altura(cm)">
+                <input wire:model.live="height" type="number" class="form-control" placeholder="Altura(cm)" {{($filled ? "readonly" : "")}}>
                 <span class="input-group-text">cm</span>
             </div>
             <div class="input-group">
@@ -103,7 +103,7 @@
                 <div class="d-flex justify-content-between mt-2 mb-1">
                     <h5 class="card-text">Diagnostico</h5>
                     <button wire:click="openDiagnostic" class="btn btn-success"
-                        {{ Auth::user()->role != Role::MEDIC ? 'disabled' : '' }}>Nuevo Diagnostico</button>
+                        {{ Auth::user()->role != Role::MEDIC ? 'disabled' : '' }} {{($filled ? "disabled" : "")}}>Nuevo Diagnostico</button>
                 </div>
                 <table class="table table-striped">
                     <thead>
@@ -283,7 +283,7 @@
                     <div style="width: 75%;margin-left: 5px;">
                         <div class="mb-3">
                             <span class="form-label">Motivo Consulta</span>
-                            <textarea wire:model="consultation" class="form-control" rows="2" cols=""></textarea>
+                            <textarea wire:model="consultation" class="form-control" rows="2" cols="" {{($filled ? "readonly" : "")}}></textarea>
                             @error('consultation')
                                 <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
                                     data-bs-title="{{ $message }}">
@@ -293,7 +293,7 @@
                         </div>
                         <div class="mb-3">
                             <span class="form-label">Enfermedad Actual</span>
-                            <textarea wire:model="disease" class="form-control" rows="2" cols=""></textarea>
+                            <textarea wire:model="disease" class="form-control" rows="2" cols="" {{($filled ? "readonly" : "")}}></textarea>
                             @error('diasease')
                                 <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
                                     data-bs-title="{{ $message }}">
@@ -311,7 +311,7 @@
                         </div>
                         <div class="mb-3">
                             <span class="form-label">Examen Fisico</span>
-                            <textarea wire:model="physicalExam" class="form-control" rows="2" cols=""></textarea>
+                            <textarea wire:model="physicalExam" class="form-control" rows="2" cols="" {{($filled ? "readonly" : "")}}></textarea>
                             @error('physicalExam')
                                 <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
                                     data-bs-title="{{ $message }}">
@@ -321,7 +321,7 @@
                         </div>
                         <div class="mb-3">
                             <span class="form-label">Detalle de Diagnostico</span>
-                            <textarea wire:model="detail_diagnostic" class="form-control" rows="3" cols=""></textarea>
+                            <textarea wire:model="detail_diagnostic" class="form-control" rows="3" cols="" {{($filled ? "readonly" : "")}}></textarea>
                             @error('detail_diagnostic')
                                 <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
                                     data-bs-title="{{ $message }}">
@@ -334,7 +334,7 @@
 
                 <div class="mb-1 d-flex justify-content-between">
                     <h5 class="card-text mt-2">Plan de Tratamiento</h5>
-                    <a data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-success">
+                    <a data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-success {{($filled ? "d-none" : "")}}">
                         <i class="fa fa-plus"></i>
                         Añadir Tratamiento
                     </a>
@@ -359,7 +359,7 @@
                                 <td>
                                     <input wire:model.live="treatment_save" class="form-check-input" type="radio"
                                         name="treatment_active" value="{{ $item->id }}"
-                                        @if ($item->quantity == $this->countTreatment($item->id)) disabled @endif>
+                                        @if ($item->quantity == $this->countTreatment($item->id)) disabled @endif {{($filled ? "disabled" : "")}}>
                                 </td>
                             </tr>
                         @endforeach
@@ -385,7 +385,7 @@
                 </table>
                 <div class="mb-3">
                     <span class="form-label">Nota de Evolución</span>
-                    <textarea wire:model="evaluation" class="form-control" rows="" cols=""></textarea>
+                    <textarea wire:model="evaluation" class="form-control" rows="" cols="" {{($filled ? "readonly" : "")}}></textarea>
                     @error('evaluation')
                         <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
                             data-bs-title="{{ $message }}">
@@ -481,7 +481,7 @@
                 <a wire:click="closeDiagnostic" class="btn btn-secondary mx-1">Atras</a>
                 <button
                     @if (Auth::user()->role == Role::MEDIC and $is_open) wire:click="updateOrCreateDiagnostic" @elseif($reservation->history == null) wire:click="saveVitalSigns" @else disabled @endif
-                    class="btn btn-success">Registrar</button>
+                    class="btn btn-success" {{($filled ? "disabled" : "")}}>Registrar</button>
                 @error('val')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
                         data-bs-title="{{ $message }}">
@@ -562,6 +562,7 @@
                     if (bodyId.has(part.id)) part.classList.add('body-select');
                     $wire.$refresh();
 
+                    @if(!$filled)
                     part.addEventListener('click', function(e) {
                         if (!bodyId.has(part.id)) {
                             part.classList.add('body-select');
@@ -573,6 +574,7 @@
                         $wire.body_pain = Array.from(bodyId);
                         $wire.$refresh();
                     });
+                    @endif
                 }
             }
         });

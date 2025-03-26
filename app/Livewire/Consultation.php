@@ -19,6 +19,9 @@ use Livewire\Component;
 
 class Consultation extends Component
 {
+
+    public $filled = false;
+
     public $person_id;
     public $ci;
     public $surname;
@@ -341,6 +344,7 @@ class Consultation extends Component
             $this->height = $reservation->history->height;
             $this->getIMC();
             $this->evaluation = $reservation->history->description;
+            $this->filled = true;
         }
     }
 
