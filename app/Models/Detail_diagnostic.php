@@ -24,4 +24,8 @@ class Detail_diagnostic extends Model
     public function histories(){
         return $this->hasMany(History::class,'detail_diagnostic_id','id');
     }
+
+    public function diagnostic(){
+        return $this->belongsTo(Diagnostic::class);
+    }
 }

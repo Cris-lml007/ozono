@@ -31,6 +31,7 @@ class ModalHistory extends Component
 
     public function getTreatment($id){
         $this->id = $id;
+        $this->pos = 0;
         $this->loadData();
     }
 
@@ -42,7 +43,7 @@ class ModalHistory extends Component
         $this->respiratory_rate = $this->histories[$this->pos]->respiratory_rate;
         $this->weight = $this->histories[$this->pos]->weight;
         $this->height = $this->histories[$this->pos]->height;
-        $this->date = $this->histories[$this->pos]->updated_at->toDateString();
+        $this->date = $this->histories[$this->pos]->reservation->date;//->toDateString();
         // return dd($this->date);
         $this->schedule_time = $this->histories[$this->pos]->reservation->staffSchedule->schedule->start.'-'.$this->histories[$this->pos]->reservation->staffSchedule->schedule->end;
         $this->getIMC();
