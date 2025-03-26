@@ -6,6 +6,9 @@
         <input wire:model="date_end" type="date" class="form-control">
         <button class="btn btn-primary" wire:click="$refresh"><i class="fa fa-search"></i></button>
     </div>
+    <div class="input-group">
+        <input wire:model="search" type="text" class="form-control" placeholder="Buscar por nombre o apellido">
+    </div>
     <table class="table table-striped">
         <thead>
             <th>Fecha</th>
@@ -24,7 +27,7 @@
                 <td>{{$item->reservation->date}}</td>
                 <td>{{$item->person->surname.' '. $item->person->name}}</td>
                 <td>{{$item->medic->surname.' '.$item->medic->name}}</td>
-                <td>{{$item->diagnostic->description}}</td>
+                <td>{{$item->detailDiagnostic->diagnostic->description}}</td>
                 <td>{{$item->canceled}}</td>
                 <td>
                     <a href="{{route('dashboard.consultation',$item->reservation->id)}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
