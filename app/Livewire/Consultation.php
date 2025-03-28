@@ -118,7 +118,7 @@ class Consultation extends Component
             'respiratory_rate' => $this->respiratory_rate,
             'weight' => $this->weight,
             'height' => $this->height,
-            'canceled' => 0
+            'canceled' => -1
         ]);
         $this->reservation = Reservation::find($this->reservation->id);
         if(!$this->is_open) $this->redirect(route('dashboard.main'));
@@ -344,7 +344,7 @@ class Consultation extends Component
             $this->height = $reservation->history->height;
             $this->getIMC();
             $this->evaluation = $reservation->history->description;
-            $this->filled = true;
+            $this->filled = $this->reservation->history->canceled == -1 ? false : true;
         }
     }
 

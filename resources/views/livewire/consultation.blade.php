@@ -44,7 +44,7 @@
             <h5 class="card-text mt-1">Signos Vitales</h5>
             <div class="input-group">
                 <span class="input-group-text"><i class="nf nf-fa-droplet"></i></span>
-                <input wire:model="presure" type="text" class="form-control" placeholder="Presion Arterial(mmHg)" {{($filled ? "readonly" : "")}}>
+                <input wire:model="presure" type="text" class="form-control" placeholder="Presion Arterial(mmHg)" {{(!empty($presure) ? "readonly" : "")}}>
                 <span class="input-group-text">mmHg</span>
                 @error('presure')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -53,7 +53,7 @@
                     </span>
                 @enderror
                 <span class="input-group-text"><i class="fa fa-temperature-low"></i></span>
-                <input wire:model="temperature" type="number" class="form-control" placeholder="Temperatura(C°)" {{($filled ? "readonly" : "")}}>
+                <input wire:model="temperature" type="number" class="form-control" placeholder="Temperatura(C°)" {{(!empty($temperature) ? "readonly" : "")}}>
                 <span class="input-group-text">C°</span>
                 @error('temperature')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -65,7 +65,7 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="nf nf-fa-heart_pulse"></i></span>
                 <input wire:model="heart_rate" type="number" class="form-control"
-                    placeholder="Frecuencia Cardiaca(x Minuto)" {{($filled ? "readonly" : "")}}>
+                    placeholder="Frecuencia Cardiaca(x Minuto)" {{(!empty($heart_rate) ? "readonly" : "")}}>
                 <span class="input-group-text">lpm</span>
                 @error('heart_rate')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -75,7 +75,7 @@
                 @enderror
                 <span class="input-group-text"><i class="nf nf-fa-lungs"></i></span>
                 <input wire:model="respiratory_rate" type="number" class="form-control"
-                    placeholder="Frecuencia Respiratoria(x Minuto)" {{($filled ? "readonly" : "")}}>
+                    placeholder="Frecuencia Respiratoria(x Minuto)" {{(!empty($respiratory_rate) ? "readonly" : "")}}>
                 <span class="input-group-text">rpm</span>
                 @error('respiratory_rate')
                     <span class="input-group-text text-bg-danger" data-bs-toggle="tooltip"
@@ -86,10 +86,10 @@
             </div>
             <div class="input-group">
                 <span class="input-group-text"><i class="nf nf-md-scale_bathroom"></i></span>
-                <input wire:model.live="weight" type="number" class="form-control" placeholder="Peso(Kg)" {{($filled ? "readonly" : "")}}>
+                <input wire:model.live="weight" type="number" class="form-control" placeholder="Peso(Kg)" {{(!empty($weight) ? "readonly" : "")}}>
                 <span class="input-group-text">Kg</span>
                 <span class="input-group-text"><i class="nf nf-md-human_male_height"></i></span>
-                <input wire:model.live="height" type="number" class="form-control" placeholder="Altura(cm)" {{($filled ? "readonly" : "")}}>
+                <input wire:model.live="height" type="number" class="form-control" placeholder="Altura(cm)" {{(!empty($height) ? "readonly" : "")}}>
                 <span class="input-group-text">cm</span>
             </div>
             <div class="input-group">
