@@ -59,8 +59,8 @@
                     @endphp
                     <tr>
                         <td>{{ $item->reservation->date }}</td>
-                        <td>{{ $item->person->surname . ' ' . $item->person->name }}</td>
-                        <td>{{ $item->medic->surname . ' ' . $item->medic->name }}</td>
+                        <td>{{ $item->person?->surname . ' ' . $item->person?->name }}</td>
+                        <td>{{ $item->medic?->surname . ' ' . $item->medic?->name }}</td>
                         <td>{{ $item->detailDiagnostic->diagnostic->description }}</td>
                         <td>{{ $item->canceled }}</td>
                         <td>{{ $neto }}</td>
