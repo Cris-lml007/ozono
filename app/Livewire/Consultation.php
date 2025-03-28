@@ -142,7 +142,8 @@ class Consultation extends Component
             $query->where('reservation_id',null);
         })->get();
         foreach(History::where('person_id',$this->reservation->person_id)->get() as $history){
-            // dd($history);
+            // dd($history->detailDiagnostic->diagnostic_id);
+            if($history->detailDiagnostic == null) Break;
             if($history->detailDiagnostic->diagnostic_id == $this->diagnostic->id){
                 $this->total -= $history->canceled;
             }
@@ -406,6 +407,10 @@ class Consultation extends Component
     public function restart()
     {
         $this->reset();
+    }
+
+    public function isFilled(){
+        return $this->filled;
     }
 
     public function render()
